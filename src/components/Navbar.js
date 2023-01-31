@@ -3,8 +3,11 @@ import { FaMusic } from 'react-icons/fa';
 import { MdDarkMode } from 'react-icons/md';
 import { FiSun } from 'react-icons/fi';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") === "light" ? "dark" : "light"
     );
@@ -34,7 +37,7 @@ const Navbar = () => {
 
     return (
         <nav className="w-full bg-white dark:bg-slate-900 flex p-4  items-center justify-between">
-            <div className="inline-flex space-x-2">
+            <div className="inline-flex space-x-2 hover:cursor-pointer " onClick={() => navigate(`/`)} >
                 <div className="w-auto">
                     <FaMusic size={"2rem"} color={`${theme === "light" ? "white" : "black"}`} />
                 </div>

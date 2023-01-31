@@ -5,6 +5,7 @@ const initialState = {
     topArtistsList: [],
     topAlbums:[],
     topTracks:[],
+    artistInfo:[],
     loading: false,
     error: "",
 }
@@ -35,6 +36,16 @@ export const getTopTracks = createAsyncThunk(
     'topTracks/getTopTracks', async ({id}) => {
 
         const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=${id}&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=10`);
+        console.log(res.data)
+        return res;
+
+    }
+)
+
+export const getArtistInfo = createAsyncThunk(
+    'artistInfo/getArtistInfo', async ({id}) => {
+
+        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=${id}&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=10`);
         console.log(res.data)
         return res;
 
@@ -83,7 +94,21 @@ export const topArtistSlice = createSlice({
         addCase(getTopTracks.rejected, (state) => {
             state.loading = false
             state.error = "error";
+        });
+
+        addCase(getArtistInfo.pending, (state) => {
+                state.loading = true;
+            });
+        addCase(getArtistInfo.fulfilled, (state, action) => {
+            // console.log(action.payload.data.artist)
+            state.artistInfo = action.payload.data.artist;
+            state.loading = false;
+        });
+        addCase(getArtistInfo.rejected, (state) => {
+            state.loading = false
+            state.error = "error";
         })
+
     }
 })
 
