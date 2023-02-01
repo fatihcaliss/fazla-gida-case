@@ -43,7 +43,7 @@ const Navbar = () => {
                 </div>
                 <span className="hidden md:block text-slate-900 dark:text-slate-100 font-bold text-2xl">Fazla Music</span>
             </div>
-            <ul className="hidden md:flex space-x-4 dark:text-slate-100 text-slate-900">
+            <ul className=" md:flex space-x-4 dark:text-slate-100 text-slate-900">
                 <li className="px-4 py-2 hover:cursor-pointer" onClick={changeTheme} >{theme === "light" ? <FiSun size={"2rem"} /> : <MdDarkMode size={"2rem"} />}</li>
             </ul>
         </nav>

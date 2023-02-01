@@ -5,17 +5,19 @@ const initialState = {
     topArtistsList: [],
     topAlbums:[],
     topTracks:[],
-    artistInfo:[],
     loading: false,
     error: "",
+    hasMore: true,
+    page : 1
+
 }
 
 const API_KEY = process.env.API_KEY
 
 export const getTopArtists = createAsyncThunk(
-    'topArtists/getTopArtists', async () => {
+    'topArtists/getTopArtists', async ({page}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=20`);
+        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=5&page=${page}`);
         // console.log(res)
         return res;
 
@@ -42,16 +44,6 @@ export const getTopTracks = createAsyncThunk(
     }
 )
 
-export const getArtistInfo = createAsyncThunk(
-    'artistInfo/getArtistInfo', async ({id}) => {
-
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=${id}&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=10`);
-        console.log(res.data)
-        return res;
-
-    }
-)
-
 export const topArtistSlice = createSlice({
     name: 'topArtists',
     initialState,
@@ -65,6 +57,10 @@ export const topArtistSlice = createSlice({
         addCase(getTopArtists.fulfilled, (state, action) => {
             // console.log(action.payload)
             state.topArtistsList = action.payload.data.artists.artist;
+            if(action.payload.data.artists.artist.length === 0 || action.payload.data.artists.artist.length < 5){
+                state.hasMore = true
+            }
+            state.page = state.page + 1
             state.loading = false;
         });
         addCase(getTopArtists.rejected, (state) => {
@@ -95,20 +91,6 @@ export const topArtistSlice = createSlice({
             state.loading = false
             state.error = "error";
         });
-
-        addCase(getArtistInfo.pending, (state) => {
-                state.loading = true;
-            });
-        addCase(getArtistInfo.fulfilled, (state, action) => {
-            // console.log(action.payload.data.artist)
-            state.artistInfo = action.payload.data.artist;
-            state.loading = false;
-        });
-        addCase(getArtistInfo.rejected, (state) => {
-            state.loading = false
-            state.error = "error";
-        })
-
     }
 })
 
