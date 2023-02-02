@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
+    
     const navigate = useNavigate();
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") === "light" ? "dark" : "light"
@@ -44,7 +45,7 @@ const Navbar = () => {
                 <span className="hidden md:block text-slate-900 dark:text-slate-100 font-bold text-2xl">Fazla Music</span>
             </div>
             <ul className=" md:flex space-x-4 dark:text-slate-100 text-slate-900">
-                <li className="px-4 py-2 hover:cursor-pointer" onClick={changeTheme} >{theme === "light" ? <FiSun size={"2rem"} /> : <MdDarkMode size={"2rem"} />}</li>
+                <li className="px-4 py-2 hover:cursor-pointer" aria-label='theme-icon' onClick={changeTheme} >{theme === "light" ? <FiSun size={"2rem"} /> : <MdDarkMode size={"2rem"} />}</li>
             </ul>
         </nav>
     )

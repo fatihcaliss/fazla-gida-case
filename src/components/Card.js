@@ -6,7 +6,7 @@ const Card = ({ title, name, playcount, listeners, artistName, image }) => {
             <figure className="w-full space-y-4">
                 <span className="text-base text-zinc-400 block mt-2- ">{title}:</span>
                 <h2 className="text-lg font-bold tracking-tight  sm:text-2xl">
-                    <a href="#" className="hover:underline">{name}</a>
+                    <p className="hover:underline">{name}</p>
                 </h2>
                 <div>
                     <span className="text-base text-zinc-400 block mt-1 ">Artist: {artistName}</span>
@@ -15,7 +15,7 @@ const Card = ({ title, name, playcount, listeners, artistName, image }) => {
                 </div>
             </figure>
             <figcaption className="w-full md:w-1/3 order-first md:order-last">
-                <img src={Object.values(image[2])[0]} alt="" />
+                <img src={image && Object.values(image[2])[0]} alt="" />
             </figcaption>
         </article>
     )

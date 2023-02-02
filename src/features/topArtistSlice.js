@@ -12,12 +12,12 @@ const initialState = {
 
 }
 
-const API_KEY = process.env.API_KEY
+const API_KEY = process.env.REACT_APP_API_KEY
 
 export const getTopArtists = createAsyncThunk(
     'topArtists/getTopArtists', async ({page}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=5&page=${page}`);
+        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${API_KEY}&format=json&limit=10&page=${page}`);
         // console.log(res)
         return res;
 
@@ -27,7 +27,7 @@ export const getTopArtists = createAsyncThunk(
 export const getTopAlbums = createAsyncThunk(
     'topAlbums/getTopAlbums', async ({id}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&mbid=${id}&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=10`);
+        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
         // console.log(res.data)
         return res;
 
@@ -37,7 +37,7 @@ export const getTopAlbums = createAsyncThunk(
 export const getTopTracks = createAsyncThunk(
     'topTracks/getTopTracks', async ({id}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=${id}&api_key=${"e8e5c2622f97316a948133b80643a11f"}&format=json&limit=10`);
+        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
         console.log(res.data)
         return res;
 
@@ -55,10 +55,16 @@ export const topArtistSlice = createSlice({
             state.loading = true;
         });
         addCase(getTopArtists.fulfilled, (state, action) => {
-            // console.log(action.payload)
-            state.topArtistsList = action.payload.data.artists.artist;
-            if(action.payload.data.artists.artist.length === 0 || action.payload.data.artists.artist.length < 5){
-                state.hasMore = true
+            // console.log(action.payload.data.artists)
+            console.log("fonk öncesi", state.topArtistsList);
+            if(action.payload.data.artists.artist.length < 10 ) {
+                state.topArtistsList = [...state.topArtistsList,...action.payload.data.artists.artist]
+            }else{
+                state.topArtistsList = action.payload.data.artists.artist;
+            }           
+            console.log("fonk sonrası", state.topArtistsList);
+            if(action.payload.data.artists.artist.length === 0 || action.payload.data.artists.artist.length < 10){
+                state.hasMore = false
             }
             state.page = state.page + 1
             state.loading = false;

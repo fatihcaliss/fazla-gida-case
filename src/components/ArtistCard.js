@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-const ArtistCard = ({props, isHeader=false}) => {
+const ArtistCard = ({ props, isHeader = false }) => {
     // console.log(Object.values(props.image[2])[0])
     const navigate = useNavigate();
     return (
@@ -10,20 +10,25 @@ const ArtistCard = ({props, isHeader=false}) => {
             <figure className="w-full space-y-4">
                 <span className="text-base text-zinc-400 block mt-2 ">Artist</span>
                 <h2 className="text-lg font-bold tracking-tight  sm:text-2xl">
-                    <a href="#" className="hover:underline">{props.name}</a>
+                    <p className="hover:underline">{props?.name}</p>
                 </h2>
                 <div>
-                <span className="text-base text-zinc-400 block mt-2 ">Listeners: {props.listeners}</span>
-                <span className="text-base text-zinc-400 block mt-2 ">Playcount: {props.playcount}</span>
+                    <span className="text-base text-zinc-400 block mt-2 ">Listeners: {props?.listeners}</span>
+                    <span className="text-base text-zinc-400 block mt-2 ">Playcount: {props?.playcount}</span>
                 </div>
-                <button 
-                className="px-5 py-1 border-2 hover:border-blue-600 transition border-gray-200 rounded-full"
-                onClick={() => navigate(`/detail/${props.mbid}`,{state:props})}
-                >Read More</button>
+                {!isHeader && <button
+                    className="px-5 py-1 border-2 hover:border-blue-600 transition border-gray-200 rounded-full"
+                    onClick={() => navigate(`/detail/${props.mbid}`, { state: props })}
+                >Read More</button>}
+                {/* <button
+                    className="px-5 py-1 border-2 hover:border-blue-600 transition border-gray-200 rounded-full"
+                    onClick={() => navigate(`/detail/${props.mbid}`, { state: props })}
+                >Read More</button> */}
+
             </figure>
             <figcaption className="w-full md:w-1/3 order-first md:order-last">
                 {/* <img src="https://picsum.photos/200/300" alt="blog" className="w-full h-48 object-cover object-center rounded-md"> */}
-                <img src={Object.values(props.image[2])[0]} alt="" className='m-auto'/>
+                {/* <img src={Object.values(props.image[2])[0]} alt="" className='m-auto' /> */}
             </figcaption>
         </article>
     )
