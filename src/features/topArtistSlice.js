@@ -12,12 +12,13 @@ const initialState = {
 
 }
 
+const API_URL = process.env.REACT_APP_API_URL
 const API_KEY = process.env.REACT_APP_API_KEY
 
 export const getTopArtists = createAsyncThunk(
     'topArtists/getTopArtists', async ({page}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${API_KEY}&format=json&limit=10&page=${page}`);
+        const res = await axios(`${API_URL}?method=chart.gettopartists&api_key=${API_KEY}&format=json&limit=10&page=${page}`);
         // console.log(res)
         return res;
 
@@ -27,7 +28,7 @@ export const getTopArtists = createAsyncThunk(
 export const getTopAlbums = createAsyncThunk(
     'topAlbums/getTopAlbums', async ({id}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
+        const res = await axios(`${API_URL}?method=artist.gettopalbums&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
         // console.log(res.data)
         return res;
 
@@ -37,7 +38,7 @@ export const getTopAlbums = createAsyncThunk(
 export const getTopTracks = createAsyncThunk(
     'topTracks/getTopTracks', async ({id}) => {
 
-        const res = await axios(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
+        const res = await axios(`${API_URL}?method=artist.gettoptracks&mbid=${id}&api_key=${API_KEY}&format=json&limit=10`);
         console.log(res.data)
         return res;
 
