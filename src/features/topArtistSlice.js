@@ -55,14 +55,13 @@ export const topArtistSlice = createSlice({
             state.loading = true;
         });
         addCase(getTopArtists.fulfilled, (state, action) => {
-            // console.log(action.payload.data.artists)
-            console.log("fonk öncesi", state.topArtistsList);
+            console.log("before func", state.topArtistsList);
             if(action.payload.data.artists.artist.length < 10 ) {
                 state.topArtistsList = [...state.topArtistsList,...action.payload.data.artists.artist]
             }else{
                 state.topArtistsList = action.payload.data.artists.artist;
             }           
-            console.log("fonk sonrası", state.topArtistsList);
+            console.log("after func", state.topArtistsList);
             if(action.payload.data.artists.artist.length === 0 || action.payload.data.artists.artist.length < 10){
                 state.hasMore = false
             }

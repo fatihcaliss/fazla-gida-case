@@ -15,7 +15,7 @@ const Card = ({ title, name, playcount, listeners, artistName, image }) => {
                 </div>
             </figure>
             <figcaption className="w-full md:w-1/3 order-first md:order-last">
-                <img src={image && Object.values(image[2])[0]} alt="" />
+                <img src={image ? Object.values(image[2])[0] : "https://picsum.photos/200/300"} alt="" />
             </figcaption>
         </article>
     )
