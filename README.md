@@ -1,48 +1,22 @@
 ## :point_right: [Click here to see on browser](https://fazla-gida-case.vercel.app/)
 
-# Getting Started with Create React App and Redux
+## Fazla-Gida-FE-Case
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+In this project;<br/>
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+📌  Last.fm’s API(https://www.last.fm/api) used for datas. <br/>
+📌 Axios used for get chart.getTopArtists, artist.getTopAlbums, artist.getTopTracks infos from Last.fm’s API.<br/>
+📌 <b>Tailwindcss</b> used for styling.<br/>
+📌 For Stage management <b>Redux-toolkit</b> used. <br/>
+📌 <b> React-router-dom</b> used for routing. There are two pages. One of them is Home page which lists top 10 artist. <br/>
+📌 On Home page,  <b> react-infinite-scroll-component</b> used for geting datas. Each request is limited 10 artists by url query. Default API request, is responded by 50 artists. <br/>
+📌 Website theme can be changed to dark-light mode by clicking the item on top right. <br/>
+📌 The other page is Artist Detail page. This page contains a header on top with artist name. In second section, there are top 10 albums and top 10 tracks for artist.<br/><br/>
+📌 There are 3 components.
+<ul>
+<li> ArtistCard component used for home page top 10 artist list and artist detail page header artist information.</li>
+<li> Card component used for Artist Detail Page top 10 albums and top 10 tracks.</li>
+<li> Navbar component used for Homee page and Artist Detail Page navbar. It contains theme change icons.</li>
+</ul>
+📌 React-testing-library used for testing.<br/>
+📌 Development environment tool Storybook used for playground for UI components 
