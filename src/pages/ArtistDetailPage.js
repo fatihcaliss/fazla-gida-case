@@ -28,7 +28,7 @@ const ArtistDetailPage = () => {
     </div>)
     console.log(state);
     return (
-        <div className='bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100'>
+        <div className='bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 pt-16'>
             <div className='p-10'>
                 <ArtistCard props={state} isHeader={true}/>
             </div>

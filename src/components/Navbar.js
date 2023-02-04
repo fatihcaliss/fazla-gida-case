@@ -36,7 +36,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full bg-white dark:bg-slate-900 flex p-4  items-center justify-between">
+        <nav className="w-full bg-white dark:bg-slate-900 flex p-4  items-center justify-between fixed z-50 opacity-75">
             <div className="inline-flex space-x-2 hover:cursor-pointer " onClick={() => navigate(`/`)} >
                 <div className="w-auto">
                     <FaMusic size={"2rem"} color={`${theme === "light" ? "white" : "black"}`} />
