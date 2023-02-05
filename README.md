@@ -20,3 +20,11 @@ In this project;<br/>
 </ul>
 📌 React-testing-library used for testing.<br/>
 📌 Development environment tool Storybook used for playground for UI components 
+</br>
+
+## Preview:
+</br>
+
+![animation](https://github.com/fatihcaliss/fazla-gida-case/blob/master/fazlagidapreview.gif?raw=true)
+
+
